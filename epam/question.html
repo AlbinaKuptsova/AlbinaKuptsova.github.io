@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<form action="send.php" method="post">
+<input type="text" name="fio" placeholder="Укажите ФИО" required>
+<input type="text" name="email" placeholder="Укажите e-mail" required>
+<input type="submit" value="Отправить">
+</form>
+
+	<input readonly id="date" type="text" name="date" size="44" onChange="msg(this.form)" required style="opacity: 0;">
+     <script>
+      Data = new Date();
+      Year = Data.getFullYear();
+      Month = Data.getMonth();
+      Day = Data.getDate();
+      Hour = Data.getHours();
+      Minutes = Data.getMinutes();
+      Seconds = Data.getSeconds();
+      document.getElementById('date').value = Month + "/" + Day + "/" + Year + " " + Hour + ":" + Minutes + ":" + Seconds;
+     </script>
+	<input readonly id="browser" type="text" name="browser" size="44" onChange="msg(this.form)" required style="opacity: 0;">
+     <script>
+      if (navigator.userAgent.search("MSIE") >= 0){
+       var position = navigator.userAgent.search("MSIE") + 5;
+       var end = navigator.userAgent.search("; Windows");
+       var version = navigator.userAgent.substring(position,end);
+       document.getElementById('browser').value = version + '"';
+      }
+      else if (navigator.userAgent.search("Chrome") >= 0){
+       var position = navigator.userAgent.search("Chrome") + 7;
+       var end = navigator.userAgent.search(" Safari");
+       var version = navigator.userAgent.substring(position,end);
+       document.getElementById('browser').value = version + '"';
+      }
+      else if (navigator.userAgent.search("Firefox") >= 0){
+       var position = navigator.userAgent.search("Firefox") + 8;
+       var version = navigator.userAgent.substring(position);
+       document.getElementById('browser').value = version + '"';
+      }
+      else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0){
+       var position = navigator.userAgent.search("Version") + 8;
+       var end = navigator.userAgent.search(" Safari");
+       var version = navigator.userAgent.substring(position,end);
+       document.getElementById('browser').value = version + '"';
+      }
+      else if (navigator.userAgent.search("Opera") >= 0){
+       var position = navigator.userAgent.search("Version") + 8;
+       var version = navigator.userAgent.substring(position);
+       document.getElementById('browser').value = version + '"';
+      }
+      else{
+       document.getElementById('browser').value = "Other";
+      }
+</body>
+</html>
